@@ -1,38 +1,42 @@
 #include "Stack.h"
+#include "IStack.h"
+#include "DynamicStack.h"
 #include <iostream>
 
 int main() {
-    Stack<int> stack(10);
-    stack.push(1);
-    stack.push(2);
-    stack.push(3);
-    stack.push(4);
-    stack.push(5);
-    stack.push(6);
-    stack.push(7);
-    stack.push(8);
-    stack.push(9);
-    stack.push(10);
-    stack.display();
+    IStack<int> staticStack = new Stack<int>(10);
+    IStack<int> dynamicStack = new DynamicStack<int>();
 
-    stack.push(11);
-    stack.display();
+    staticStack.push(1);
+    staticStack.push(2);
+    staticStack.push(3);
+    staticStack.push(4);
+    staticStack.push(5);
+    staticStack.push(6);
+    staticStack.push(7);
+    staticStack.push(8);
+    staticStack.push(9);
+    staticStack.push(10);
+    staticStack.display();
 
-    std::cout << stack.top() << std::endl;
-    stack.pop();
-    stack.display();
+    staticStack.push(11);
+    staticStack.display();
 
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.pop();
-    stack.display();
+    std::cout << staticStack.top() << std::endl;
+    staticStack.pop();
+    staticStack.display();
 
-    stack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.pop();
+    staticStack.display();
+
+    staticStack.pop();
     return 0;
 }

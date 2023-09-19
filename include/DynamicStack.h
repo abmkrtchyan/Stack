@@ -2,10 +2,13 @@
 #define STACK_DYNAMIC_STACK_H
 
 #include "IStack.h"
+#include "Stack.h"
 
 template<typename T>
 class DynamicStack : public IStack<T> {
 private:
+    Stack<T> *stack;
+
     void extendStack();
 
     void reduceStack();
