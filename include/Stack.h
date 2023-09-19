@@ -2,9 +2,10 @@
 #define STACK_STACK_H
 
 #include <iostream>
+#include "IStack.h"
 
 template<typename T>
-class Stack {
+class Stack : public IStack<T> {
 private:
     std::size_t capacity;
     std::size_t top_index;
