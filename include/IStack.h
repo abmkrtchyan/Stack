@@ -15,6 +15,8 @@ public:
     virtual bool push(const T &elem) = 0;
 
     virtual bool pop() = 0;
+
+    virtual void display() const = 0;
 };
 
 #endif //STACK_I_STACK_H
