@@ -10,6 +10,8 @@ public:
 
     virtual bool isEmpty() const = 0;
 
+    virtual bool isFool() const = 0;
+
     virtual const T &top() = 0;
 
     virtual bool push(const T &elem) = 0;

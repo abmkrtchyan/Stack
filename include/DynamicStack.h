@@ -20,6 +20,8 @@ public:
 
     bool isEmpty() const;
 
+    bool isFool() const;
+
     const T &top();
 
     bool push(const T &elem);
@@ -28,6 +30,11 @@ public:
 
     void display() const;
 };
+
+template<typename T>
+bool DynamicStack<T>::isFool() const {
+    return this->stack->isFool();
+}
 
 template<typename T>
 void DynamicStack<T>::display() const {
@@ -58,22 +65,28 @@ const T &DynamicStack<T>::top() {
 
 template<typename T>
 bool DynamicStack<T>::push(const T &elem) {
-    return false;
+    if (isFool()) {
+        extendStack();
+    }
+    return this->stack->push(elem);
 }
 
 template<typename T>
 bool DynamicStack<T>::pop() {
-    return false;
+    if (this->getSize() * 4 <= this->stack->getCapacity()) {
+        reduceStack();
+    }
+    return this->stack->pop();
 }
 
 template<typename T>
 void DynamicStack<T>::reduceStack() {
-
+    this->stack = new Stack<T>(*this->stack, this->stack->getCapacity() / 2);
 }
 
 template<typename T>
 void DynamicStack<T>::extendStack() {
-
+    this->stack = new Stack<T>(*this->stack, this->stack->getCapacity() * 2 + 1);
 }
 
 #endif //STACK_DYNAMIC_STACK_H

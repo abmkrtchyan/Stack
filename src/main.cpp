@@ -1,11 +1,14 @@
-#include "Stack.h"
 #include "IStack.h"
+#include "Stack.h"
 #include "DynamicStack.h"
 #include <iostream>
 
-int main() {
+void testStaticStack();
+
+void testDynamicStack();
+
+void testStaticStack() {
     IStack<int> *staticStack = new Stack<int>(10);
-    IStack<int> *dynamicStack = new DynamicStack<int>();
 
     staticStack->push(1);
     staticStack->push(2);
@@ -38,5 +41,29 @@ int main() {
     staticStack->display();
 
     staticStack->pop();
+}
+
+void testDynamicStack() {
+    IStack<int> *dynamicStack = new DynamicStack<int>();
+
+    for (int i = 1; i < 15; i++) {
+        std::cout << "Push into dynamic stack " << i << "\n";
+        dynamicStack->push(i);
+        dynamicStack->display();
+        std::cout << "\n";
+    }
+
+    for (int i = 1; i < 15; i++) {
+        std::cout << "Pop from dynamic stack \n";
+        dynamicStack->pop();
+        dynamicStack->display();
+        std::cout << "\n";
+    }
+}
+
+int main() {
+    testStaticStack();
+    testDynamicStack();
+
     return 0;
 }

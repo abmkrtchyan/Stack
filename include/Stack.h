@@ -13,6 +13,8 @@ private:
 public:
     explicit Stack(std::size_t capacity);
 
+    explicit Stack(Stack<T> &copyStack, std::size_t capacity);
+
     std::size_t getCapacity() const;
 
     std::size_t getSize() const;
@@ -31,8 +33,24 @@ public:
 };
 
 template<typename T>
+Stack<T>::Stack(Stack<T> &copyStack, std::size_t capacity) : capacity(capacity), top_index(0) {
+    std::size_t newSize = std::min(capacity, copyStack.getSize());
+    this->stack = new T[capacity]();
+    this->top_index = newSize;
+    for (int i = 0; i < newSize; ++i) {
+        this->stack[i] = copyStack.stack[i];
+    }
+}
+
+template<typename T>
+Stack<T>::Stack(std::size_t capacity) : capacity(capacity), top_index(0) {
+    this->stack = new T[capacity];
+}
+
+
+template<typename T>
 void Stack<T>::display() const {
-    std::cout << "Stack capacity: " << this->capacity << std::endl;
+    std::cout << "Stack capacity: " << this->capacity << ", size: " << this->getSize() << std::endl;
     for (std::size_t i = 0; i < this->top_index; i++) {
         std::cout << this->stack[i] << " ";
     }
@@ -86,9 +104,5 @@ std::size_t Stack<T>::getCapacity() const {
     return this->capacity;
 }
 
-template<typename T>
-Stack<T>::Stack(std::size_t capacity) : capacity(capacity), top_index(0) {
-    this->stack = new T[capacity];
-}
 
 #endif //STACK_STACK_H
